@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RODOS · TERMINAL</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#07070b;
+  background-image:
+    radial-gradient(circle at 20% 10%,rgba(232,152,70,.06) 0,transparent 40%),
+    radial-gradient(circle at 80% 90%,rgba(214,83,110,.08) 0,transparent 45%),
+    linear-gradient(180deg,#07070b 0%,#0d0d14 100%);
+  min-height:100vh;min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Consolas','SF Mono','Menlo','Microsoft YaHei',monospace;
+  color:#e8e8e8;padding:20px;overflow:hidden;
+}
+/* 网格底纹 */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(232,152,70,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,152,70,.04) 1px,transparent 1px);
+  background-size:28px 28px;mask:radial-gradient(circle at 50% 50%,#000 0,transparent 75%);
+}
+.terminal{
+  position:relative;width:min(380px,92vw);
+  background:linear-gradient(160deg,#111119 0%,#0a0a10 100%);
+  padding:22px 22px 26px;
+  /* 明日方舟切角 */
+  clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px);
+  box-shadow:0 0 0 1px rgba(232,152,70,.35),0 0 0 3px rgba(0,0,0,.6),0 24px 70px rgba(0,0,0,.7);
+}
+/* 切角描边光 */
+.terminal::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px);
+  box-shadow:inset 0 0 30px rgba(232,152,70,.08);
+}
+.bar{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.62rem;letter-spacing:2px;color:#e89846;
+  border-bottom:1px solid rgba(232,152,70,.22);padding-bottom:8px;margin-bottom:14px;
+}
+.bar .l{display:flex;align-items:center;gap:6px}
+.diamond{display:inline-block;width:8px;height:8px;background:#e89846;transform:rotate(45deg);box-shadow:0 0 8px rgba(232,152,70,.7)}
+.status{display:flex;align-items:center;gap:5px;color:#7fd1b7}
+.dot{width:6px;height:6px;border-radius:50%;background:#7fd1b7;box-shadow:0 0 8px #7fd1b7;animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.qr-frame{
+  position:relative;background:#fff;border-radius:4px;padding:14px;
+  margin:6px auto 16px;width:fit-content;
+  box-shadow:0 0 0 1px rgba(232,152,70,.4),0 0 24px rgba(232,152,70,.18);
+}
+.qr-frame img{display:block;width:248px;height:248px}
+/* 扫描线（在二维码上扫，淡而不遮码） */
+.scan{
+  position:absolute;left:14px;right:14px;top:14px;height:2px;
+  background:linear-gradient(90deg,transparent,#d6536e 50%,transparent);
+  box-shadow:0 0 12px #d6536e;opacity:.55;
+  animation:scan 2.8s ease-in-out infinite;
+}
+@keyframes scan{0%{top:14px}50%{top:calc(100% - 16px)}100%{top:14px}}
+/* 四角切角标记 */
+.corner{position:absolute;width:16px;height:16px;border:2px solid #e89846}
+.corner.tl{top:6px;left:6px;border-right:0;border-bottom:0}
+.corner.tr{top:6px;right:6px;border-left:0;border-bottom:0}
+.corner.bl{bottom:6px;left:6px;border-right:0;border-top:0}
+.corner.br{bottom:6px;right:6px;border-left:0;border-top:0}
+.meta{text-align:center}
+.ip{
+  font-size:1.05rem;letter-spacing:3px;color:#fff;
+  font-weight:600;margin-bottom:4px;
+}
+.sub{font-size:.62rem;letter-spacing:4px;color:#9a8b78;margin-bottom:10px}
+.tagline{
+  font-size:.7rem;letter-spacing:2px;color:#d6536e;
+  border:1px solid rgba(214,83,110,.4);padding:5px 12px;border-radius:2px;display:inline-block;
+}
+/* 源石菱形装饰 */
+.rune{position:absolute;color:rgba(232,152,70,.18);font-size:1.4rem}
+.rune.r1{top:40%;left:8px;transform:rotate(45deg)}
+.rune.r2{top:40%;right:8px;transform:rotate(45deg)}
+</style>
+</head>
+<body>
+<div class="terminal">
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+  <span class="rune r1">◆</span><span class="rune r2">◆</span>
+  <div class="bar">
+    <span class="l"><span class="diamond"></span>RODOS · TERMINAL</span>
+    <span class="status"><span class="dot"></span>ONLINE</span>
+  </div>
+  <div class="qr-frame">
+    <img src="qr.png" alt="QR">
+    <div class="scan"></div>
+  </div>
+  <div class="meta">
+    <div class="ip">49.233.214.147</div>
+    <div class="sub">SCAN TO ACCESS</div>
+    <span class="tagline">致 · 小孙同学</span>
+  </div>
+</div>
+</body>
+</html>
