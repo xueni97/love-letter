@@ -3,151 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#e63946">
-<title>写给小孙同学的一封信</title>
+<meta name="theme-color" content="#5d4e8c">
+<title>致 小孙同学</title>
 <style>
 :root{
-  --paper:#fdfaf3;
-  --envelope:#e63946;
-  --envelope-dark:#b91c1c;
-  --accent:#457b9d;
-  --ink:#2b2d42;
+  --paper:#fffaf3;
+  --ink:#3a2b2b;
+  --ink-soft:#6b5566;
+  --accent:#c44569;
+  --accent-soft:#e8a0b4;
+  --gold:#b8860b;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{
-  background:linear-gradient(135deg,#f8edeb 0%,#fde2e4 100%);
-  font-family:'Helvetica Neue','PingFang SC','Microsoft YaHei',sans-serif;
-  min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;overflow-x:hidden;
+  background:linear-gradient(180deg,#ffe0ec 0%,#f5c4d6 18%,#e0a8c8 38%,#b589bb 62%,#6d5b95 85%,#3d3470 100%);
+  background-attachment:fixed;
+  font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',sans-serif;
+  min-height:100vh;min-height:100svh;
+  overflow-x:hidden;
+  position:relative;
 }
-.paper-texture{
-  background-color:var(--paper);
-  background-image:
-    repeating-linear-gradient(0deg,rgba(0,0,0,.012) 0,rgba(0,0,0,.012) 1px,transparent 1px,transparent 3px),
-    radial-gradient(circle at 20% 30%,rgba(180,140,100,.05) 0,transparent 40%),
-    radial-gradient(circle at 80% 70%,rgba(180,140,100,.05) 0,transparent 40%);
+#sakura{position:fixed;inset:0;z-index:1;pointer-events:none}
+.stage{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  padding:40px 16px 120px;
+  min-height:100vh;min-height:100svh;
 }
-.typewriter-text{
-  font-family:'KaiTi','楷体','STKaiti','仿宋','FangSong','Georgia',serif;
-  font-size:1.05rem;line-height:2;color:var(--ink);
-  letter-spacing:1px;white-space:pre-wrap;
-}
-.envelope-wrapper{
-  position:relative;cursor:pointer;
-  transition:transform .6s cubic-bezier(.4,0,.2,1);
-  width:350px;height:250px;z-index:10;
-}
-.envelope{
-  position:relative;width:100%;height:100%;
-  background:var(--envelope);border-radius:0 0 5px 5px;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
-}
-.envelope::before{
-  content:"";position:absolute;top:0;z-index:2;
-  border-left:175px solid transparent;border-right:175px solid transparent;
-  border-top:130px solid var(--envelope-dark);transform-origin:top;
-  transition:all .5s ease-in-out;
-}
-.envelope::after{
-  content:"";position:absolute;z-index:1;width:0;height:0;
-  border-left:175px solid transparent;border-right:175px solid transparent;
-  border-bottom:125px solid var(--envelope);bottom:0;
-}
-.envelope-front{
-  position:absolute;width:100%;height:100%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:3;color:#fff;pointer-events:none;text-align:center;padding:0 20px;
-}
-.envelope-front h2{font-size:1.5rem;font-weight:700;margin-bottom:6px;font-family:serif}
-.envelope-front .date{font-size:.7rem;opacity:.85;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
-.envelope-front .quote{font-style:italic;font-size:.85rem;opacity:.9;font-family:'KaiTi','楷体',serif}
 .letter{
-  position:absolute;bottom:0;left:5%;width:90%;height:90%;
-  background:var(--paper);border-radius:2px;
-  transition:all .7s ease-in-out;
-  padding:40px 25px;box-shadow:0 2px 10px rgba(0,0,0,.1);
-  z-index:0;overflow-y:auto;transform:translateY(0);
+  position:relative;width:100%;max-width:480px;
+  background:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg,rgba(120,80,60,.012) 0,rgba(120,80,60,.012) 1px,transparent 1px,transparent 4px),
+    radial-gradient(circle at 18% 22%,rgba(200,160,120,.06) 0,transparent 45%),
+    radial-gradient(circle at 82% 78%,rgba(200,160,120,.05) 0,transparent 45%);
+  border-radius:14px;
+  box-shadow:0 24px 70px rgba(60,30,80,.28),0 4px 14px rgba(0,0,0,.08);
+  padding:46px 30px 38px;
+  border:1px solid rgba(255,255,255,.5);
+  backdrop-filter:blur(2px);
+  overflow:hidden;
 }
-.envelope-wrapper.open .envelope::before{transform:rotateX(180deg);z-index:0}
-.envelope-wrapper.open .letter{
-  transform:translateY(-280px);height:560px;width:110%;left:-5%;z-index:5;
-  box-shadow:0 20px 50px rgba(0,0,0,.18);
+.letter::before{
+  content:"";position:absolute;inset:8px;border:1px solid rgba(196,69,105,.18);border-radius:8px;pointer-events:none;
 }
-.envelope-wrapper.open{transform:translateY(120px)}
-.letter::-webkit-scrollbar{width:5px}
-.letter::-webkit-scrollbar-track{background:transparent}
-.letter::-webkit-scrollbar-thumb{background:#dcdcdc;border-radius:10px}
-.wax-seal{
-  width:64px;height:64px;background:#9b2226;border-radius:50%;
-  position:absolute;top:-32px;left:calc(50% - 32px);z-index:10;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:inset 0 0 12px rgba(0,0,0,.35),0 4px 10px rgba(0,0,0,.25);
-  color:#f1faee;font-size:1.4rem;
+.head{text-align:center;margin-bottom:22px}
+.recipient{
+  font-family:'KaiTi','楷体','STKaiti','FangSong','仿宋',serif;
+  font-size:1.7rem;font-weight:700;color:var(--accent);
+  letter-spacing:4px;
 }
-@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
-.heart{color:#e63946;display:inline-block;animation:heartbeat 1.4s infinite}
+.date{font-size:.72rem;color:var(--ink-soft);letter-spacing:2px;margin-top:6px}
+.quote{
+  margin:18px auto 22px;max-width:320px;
+  font-family:'KaiTi','楷体','STKaiti',serif;
+  font-style:italic;color:var(--ink-soft);font-size:.9rem;line-height:1.7;
+  position:relative;padding:6px 0;
+}
+.quote::before,.quote::after{
+  content:"";display:block;width:40px;height:1px;margin:8px auto;
+  background:linear-gradient(90deg,transparent,var(--accent-soft),transparent);
+}
+.body{
+  font-family:'KaiTi','楷体','STKaiti','FangSong','仿宋','Georgia',serif;
+  font-size:1.02rem;line-height:2;color:var(--ink);
+  letter-spacing:1px;white-space:pre-wrap;
+  min-height:120px;
+}
+.caret::after{
+  content:"▌";color:var(--accent);animation:blink 1s steps(2) infinite;margin-left:1px;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.wishes{margin:20px 0 6px;display:flex;flex-direction:column;gap:7px}
+.wish{
+  font-family:'KaiTi','楷体','STKaiti',serif;
+  font-size:1rem;color:var(--ink);opacity:0;
+  transform:translateX(-8px);
+  animation:wishIn .6s ease forwards;
+}
+@keyframes wishIn{to{opacity:1;transform:translateX(0)}}
+.wish .em{font-size:1.15rem;margin-right:10px}
+.coda{
+  margin-top:22px;padding-top:16px;
+  border-top:1px dashed rgba(196,69,105,.25);
+  font-family:'KaiTi','楷体','STKaiti',serif;
+  text-align:center;color:var(--accent);font-size:1.08rem;font-style:italic;
+  letter-spacing:2px;
+}
+.ps-wrap{
+  margin-top:18px;display:none;
+  background:rgba(196,69,105,.05);
+  border-left:3px solid var(--accent-soft);
+  padding:14px 16px;border-radius:0 8px 8px 0;
+}
+.ps-label{font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:6px;text-transform:uppercase}
+.ps-text{
+  font-family:'KaiTi','楷体','STKaiti',serif;
+  font-style:italic;color:var(--ink-soft);font-size:.95rem;line-height:1.9;
+  min-height:20px;
+}
+.switch{
+  margin-top:24px;display:flex;gap:0;justify-content:center;flex-wrap:wrap;
+  font-size:.82rem;color:var(--ink-soft);
+}
+.switch button{
+  background:rgba(255,255,255,.55);border:1px solid rgba(196,69,105,.2);
+  padding:7px 14px;border-radius:20px;cursor:pointer;
+  font-family:inherit;font-size:.82rem;color:var(--ink-soft);
+  transition:all .25s;backdrop-filter:blur(4px);
+}
+.switch button+button{margin-left:8px}
+.switch button:hover,.switch button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .hint{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-  color:#7a3b3b;font-size:.8rem;opacity:.7;letter-spacing:1px;
-  font-family:'KaiTi','楷体',serif;animation:blink 2s infinite;
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  z-index:3;color:rgba(255,255,255,.78);font-size:.76rem;letter-spacing:2px;
+  text-shadow:0 1px 4px rgba(0,0,0,.3);
+  animation:blink 2.4s infinite;pointer-events:none;
 }
-@keyframes blink{0%,100%{opacity:.3}50%{opacity:.85}}
-.envelope-wrapper.open ~ .hint{display:none}
-.side-nav{
-  position:fixed;right:16px;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:12px;opacity:0;
-  transition:opacity .5s;pointer-events:none;
+@keyframes blink{0%,100%{opacity:.45}50%{opacity:.95}}
+.music-btn{
+  position:fixed;right:18px;bottom:18px;z-index:4;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.62);border:1px solid rgba(196,69,105,.25);
+  color:var(--accent);font-size:1.15rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(60,30,80,.22);backdrop-filter:blur(6px);
+  transition:background .25s,color .25s;
 }
-.envelope-wrapper.open ~ .side-nav{opacity:1;pointer-events:auto}
-.nav-btn{
-  background:#fff;padding:10px 16px;border-radius:50px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);font-size:.85rem;font-weight:600;
-  color:var(--accent);transition:all .3s;border:1px solid #eee;cursor:pointer;
-  white-space:nowrap;font-family:'PingFang SC','Microsoft YaHei',sans-serif;
+.music-btn.playing{background:var(--accent);color:#fff;animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.seal{
+  position:absolute;top:-14px;right:24px;width:46px;height:46px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#d6536e,#9b2226);
+  box-shadow:0 4px 12px rgba(155,34,38,.4),inset 0 0 8px rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:#ffe8ef;font-size:1.1rem;font-family:serif;
+  transform:rotate(-12deg);
 }
-.nav-btn:hover{background:var(--accent);color:#fff;transform:translateX(-4px)}
-.ps-section{margin-top:30px;border-top:1px dashed #e0d6c5;padding-top:18px;display:none}
-.ps-label{font-size:.7rem;letter-spacing:3px;color:#b08555;margin-bottom:8px;text-transform:uppercase}
-.ps-text{font-family:'KaiTi','楷体',serif;font-style:italic;color:#8b1a1a;font-size:1rem;line-height:1.9}
 @media(max-width:420px){
-  .envelope-wrapper{width:300px;height:215px}
-  .envelope::before{border-left:150px solid transparent;border-right:150px solid transparent;border-top:112px solid var(--envelope-dark)}
-  .envelope::after{border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:107px solid var(--envelope)}
-  .envelope-wrapper.open .letter{transform:translateY(-260px);height:520px}
-  .side-nav{right:8px}
-  .nav-btn{padding:8px 12px;font-size:.8rem}
+  .letter{padding:40px 22px 30px}
+  .recipient{font-size:1.5rem;letter-spacing:3px}
+  .body{font-size:.98rem;line-height:1.95}
+  .stage{padding:30px 12px 100px}
 }
 </style>
 </head>
 <body>
-
-<div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
-  <div class="envelope">
-    <div class="envelope-front">
-      <h2 id="recipientName">致 小孙同学</h2>
+<canvas id="sakura"></canvas>
+<main class="stage">
+  <article class="letter">
+    <div class="seal">❀</div>
+    <header class="head">
+      <h1 class="recipient">致　小孙同学</h1>
       <p class="date" id="letterDate"></p>
-      <p class="quote">"樱花下落的速度，是每秒五厘米。"</p>
+    </header>
+    <p class="quote">"樱花下落的速度，是每秒五厘米。<br>我该用怎么样的速度去邂逅你？"</p>
+    <div class="body caret" id="typewriter"></div>
+    <div class="wishes" id="wishes"></div>
+    <p class="coda">—— 你守着人间烟火，我守着你 ——</p>
+    <div class="ps-wrap" id="psWrap">
+      <p class="ps-label">— 秘密 P.S. —</p>
+      <p class="ps-text" id="psText"></p>
     </div>
-    <div class="letter paper-texture" id="letterBody" onclick="event.stopPropagation()">
-      <div id="typewriterTarget" class="typewriter-text"></div>
-      <div class="ps-section" id="psSection">
-        <p class="ps-label">— 秘密 P.S. —</p>
-        <p class="ps-text" id="psTarget"></p>
-      </div>
-    </div>
-  </div>
-  <div class="wax-seal">&#10084;</div>
-</div>
-
-<div class="side-nav">
-  <button class="nav-btn" onclick="changeContent('full')">完整版本</button>
-  <button class="nav-btn" onclick="changeContent('short')">简短版本</button>
-  <button class="nav-btn" onclick="revealPS()">秘密 P.S.</button>
-</div>
-
-<div class="hint">轻触信封，开启信件</div>
+    <nav class="switch">
+      <button data-mode="full" class="active">完整版</button>
+      <button data-mode="short">简短版</button>
+      <button data-mode="ps">🌸 秘密</button>
+    </nav>
+  </article>
+</main>
+<button class="music-btn" id="musicBtn" aria-label="背景音乐">♪</button>
+<audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+<div class="hint" id="hint">轻触屏幕 · 樱花开落 · 乐起</div>
 
 <script>
 const content = {
@@ -161,20 +189,23 @@ const content = {
 
 虽然你一直说自己是一个比较被动的人，但是我很感谢在过去的时间里，每一次我想见你的时候，你都未曾拒绝过。我不是一个越挫越勇的人，但是想和你见面，是我越来越想做的事。
 
-樱花下落的速度是每秒五厘米，我该用怎么样的速度去邂逅你？我们接触的时间并不是很长，甚至你的很多喜好，我也是一知半解，半知不解，阿巴阿巴……两岁的差距仿佛隔着我要奔一奔才能够得到的地方。可能对彼此来说，这会成为我俩相处之间的一场冒险，也是需要磨合的一点。
+我们接触的时间并不是很长，甚至你的很多喜好，我也是一知半解，半知不解，阿巴阿巴……两岁的差距仿佛隔着我要奔一奔才能够得到的地方。可能对彼此来说，这会成为我俩相处之间的一场冒险，也是需要磨合的一点。
 
 亲爱的小孙同学，我喜欢你是真心话，所以，大冒险愿意和我一起吗？
 
 （摊牌）我也会因为感情变得扭捏，变得患得患失。在爱情的课题里，做自己一直是一个很苦恼的问题。好在我的原则里，喜欢和自由并不冲突——我没想过困住你，自由是我们与生俱来的权利。
 
-如果可以，我想和你做未来很多个事情：
-🍂 一起剪秋天的落叶
-🌊 一起牵手走湖边
-🫘 一起拼出的豆子拼图
-🍜 一起吃同一份食物
-⛰️ 一起搀扶着登顶爬山
+如果可以，我想和你做未来很多个事情：`,
 
-在往后的日子里，我们是朋友，是恋人，是守候在身旁的一束光。时间慢慢走，只要你回头，我就在你身后。
+  wishes: [
+    {em:"🍂", t:"一起剪秋天的落叶"},
+    {em:"🌊", t:"一起牵手走湖边"},
+    {em:"🫘", t:"一起拼出的豆子拼图"},
+    {em:"🍜", t:"一起吃同一份食物"},
+    {em:"⛰️", t:"一起搀扶着登顶爬山"}
+  ],
+
+  coda: `在往后的日子里，我们是朋友，是恋人，是守候在身旁的一束光。时间慢慢走，只要你回头，我就在你身后。
 
 就像余味居里那盏永远亮着的灯——你守着人间烟火，我守着你。`,
 
@@ -191,63 +222,184 @@ const content = {
   ps: `P.S. 昨晚完成了初稿，但已经快凌晨两点了。中午尝试写到纸上，看着字迹越看越后悔小时候怎么就没养成好好写字的习惯。遂灵机一动～ 我么有偷懒哦，如果你想看狗爬体的话，吱一声。`
 };
 
-let isOpen = false, isTyping = false, currentMode = 'full', twTimer = null;
+const wishesEl = document.getElementById('wishes');
+const typeEl = document.getElementById('typewriter');
+const psWrap = document.getElementById('psWrap');
+const psText = document.getElementById('psText');
+const hint = document.getElementById('hint');
+let typing=false, twTimer=null, wishesShown=false;
 
 (function(){
-  const d = new Date();
+  const d=new Date();
   document.getElementById('letterDate').textContent =
-    d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+    d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';
+  // 触摸/点击隐藏提示
+  setTimeout(()=>hint.style.opacity='0',4000);
 })();
 
-function toggleEnvelope(){
-  const w = document.getElementById('envelopeWrapper');
-  if(!isOpen){
-    w.classList.add('open');
-    isOpen = true;
-    setTimeout(()=>startTypewriter(content.full), 700);
-  }
+function renderWishes(){
+  if(wishesShown){return}
+  wishesShown=true;
+  content.wishes.forEach((w,i)=>{
+    const d=document.createElement('div');
+    d.className='wish';
+    d.style.animationDelay=(i*0.5)+'s';
+    d.innerHTML='<span class="em">'+w.em+'</span>'+w.t;
+    wishesEl.appendChild(d);
+  });
 }
 
-function startTypewriter(text){
-  if(isTyping){clearTimeout(twTimer)}
-  isTyping = true;
-  const target = document.getElementById('typewriterTarget');
-  target.innerHTML = '';
-  let i = 0;
-  function type(){
-    if(i < text.length){
-      target.innerHTML += text.charAt(i);
+function startTypewriter(text, cb){
+  if(typing&&twTimer){clearTimeout(twTimer)}
+  typing=true;
+  typeEl.textContent='';
+  typeEl.classList.add('caret');
+  let i=0;
+  (function type(){
+    if(i<text.length){
+      typeEl.textContent+=text.charAt(i);
       i++;
-      twTimer = setTimeout(type, 55);
-    } else { isTyping = false; }
-  }
-  type();
-}
-
-function changeContent(mode){
-  if(currentMode === mode) return;
-  currentMode = mode;
-  document.getElementById('psSection').style.display = 'none';
-  startTypewriter(content[mode]);
-}
-
-function revealPS(){
-  const sec = document.getElementById('psSection');
-  sec.style.display = 'block';
-  const target = document.getElementById('psTarget');
-  target.innerHTML = '';
-  let i = 0;
-  const text = content.ps;
-  (function typePS(){
-    if(i < text.length){
-      target.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typePS, 60);
+      twTimer=setTimeout(type, 52);
+    }else{
+      typing=false;
+      typeEl.classList.remove('caret');
+      if(cb)cb();
     }
   })();
-  const letter = document.getElementById('letterBody');
-  setTimeout(()=>letter.scrollTo({top:letter.scrollHeight, behavior:'smooth'}), 500);
 }
+
+function showFull(){
+  psWrap.style.display='none';
+  wishesEl.innerHTML='';wishesShown=false;
+  startTypewriter(content.full, ()=>{
+    renderWishes();
+    setTimeout(()=>startTypewriter(content.coda,null), 600);
+  });
+}
+function showShort(){
+  psWrap.style.display='none';
+  wishesEl.innerHTML='';wishesShown=false;
+  startTypewriter(content.short, null);
+}
+function showPS(){
+  psWrap.style.display='block';
+  psText.textContent='';
+  let i=0;const t=content.ps;
+  (function p(){
+    if(i<t.length){psText.textContent+=t.charAt(i);i++;setTimeout(p,58)}
+  })();
+}
+function switchMode(mode){
+  document.querySelectorAll('.switch button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+  if(mode==='full')showFull();
+  else if(mode==='short')showShort();
+  else showPS();
+}
+
+document.querySelectorAll('.switch button').forEach(b=>{
+  b.addEventListener('click',()=>switchMode(b.dataset.mode));
+});
+
+/* ===== BGM ===== */
+const bgm=document.getElementById('bgm');
+const musicBtn=document.getElementById('musicBtn');
+let bgmStarted=false;
+function playBgm(){
+  bgm.play().then(()=>{
+    musicBtn.classList.add('playing');
+    hint.style.opacity='0';
+  }).catch(()=>{});
+}
+function firstStart(){
+  if(bgmStarted)return;bgmStarted=true;
+  playBgm();
+}
+document.addEventListener('click',firstStart,{once:true});
+document.addEventListener('touchstart',firstStart,{once:true});
+musicBtn.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
+musicBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  if(bgm.paused){playBgm()}else{bgm.pause();musicBtn.classList.remove('playing')}
+});
+
+// 开场
+setTimeout(showFull, 600);
+
+/* ===== 樱花飘落 Canvas ===== */
+const canvas=document.getElementById('sakura');
+const ctx=canvas.getContext('2d');
+let W,H,petals=[];
+function resize(){
+  W=canvas.width=window.innerWidth*devicePixelRatio;
+  H=canvas.height=window.innerHeight*devicePixelRatio;
+  canvas.style.width=window.innerWidth+'px';
+  canvas.style.height=window.innerHeight+'px';
+}
+function rand(a,b){return a+Math.random()*(b-a)}
+function Petal(){
+  this.reset(true);
+}
+Petal.prototype.reset=function(init){
+  this.x=rand(0,W);
+  this.y=init?rand(-H,0):rand(-80,-10);
+  this.size=rand(14,28)*devicePixelRatio;
+  this.rot=rand(0,Math.PI*2);
+  this.rotSpd=rand(-0.02,0.02);
+  this.vy=rand(0.6,1.4)*devicePixelRatio;
+  this.swayAmp=rand(20,50)*devicePixelRatio;
+  this.swaySpd=rand(0.005,0.015);
+  this.swayPhase=rand(0,Math.PI*2);
+  this.alpha=rand(0.6,0.95);
+  this.hue=rand(340,355);
+};
+Petal.prototype.update=function(){
+  this.y+=this.vy;
+  this.swayPhase+=this.swaySpd;
+  this.x+=Math.sin(this.swayPhase)*0.5;
+  this.rot+=this.rotSpd;
+  if(this.y>H+40){this.reset(false)}
+};
+Petal.prototype.draw=function(){
+  const s=this.size;
+  ctx.save();
+  ctx.translate(this.x,this.y);
+  ctx.rotate(this.rot);
+  ctx.globalAlpha=this.alpha;
+  // 5瓣樱花
+  for(let i=0;i<5;i++){
+    ctx.save();
+    ctx.rotate(i*Math.PI*2/5);
+    const g=ctx.createRadialGradient(0,-s*0.18,0,0,-s*0.25,s*0.5);
+    g.addColorStop(0,'rgba(255,255,255,0.95)');
+    g.addColorStop(0.45,'rgba(255,200,220,0.85)');
+    g.addColorStop(1,'rgba(255,150,180,0.45)');
+    ctx.fillStyle=g;
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(s*0.32,-s*0.18, s*0.22,-s*0.5, 0,-s*0.5);
+    ctx.bezierCurveTo(-s*0.22,-s*0.5, -s*0.32,-s*0.18, 0,0);
+    ctx.fill();
+    ctx.restore();
+  }
+  // 花蕊
+  ctx.fillStyle='rgba(255,225,120,0.85)';
+  ctx.beginPath();
+  ctx.arc(0,0,s*0.07,0,Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+};
+function initPetals(){
+  petals=[];
+  const n=Math.min(46, Math.floor(window.innerWidth/14));
+  for(let i=0;i<n;i++)petals.push(new Petal());
+}
+function loop(){
+  ctx.clearRect(0,0,W,H);
+  for(const p of petals){p.update();p.draw()}
+  requestAnimationFrame(loop);
+}
+window.addEventListener('resize',()=>{resize();initPetals()});
+resize();initPetals();loop();
 </script>
 </body>
 </html>
